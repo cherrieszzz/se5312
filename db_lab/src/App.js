@@ -26,6 +26,13 @@ class App extends React.Component {
       input_str:e.currentTarget.value
     })
   }
+  getFormData = (e) => {
+    const newData = this.state._data.push(e)
+    this.setState({
+      _data:newData
+    })
+    console.log(this.state._data)
+  }
   render() {
     return (
       <div className="container">
@@ -42,7 +49,9 @@ class App extends React.Component {
                      render={() =>  <Table  tableName = {this.state.data_sec} />} 
               />
               <Route path='/post' component={Posts} />
-              <Route path='/addNew' component={Addnew} />
+              <Route path='/addNew' 
+                     render={() =>  <Addnew  parent = {this}/>}
+              />
             {/* <input value={this.state.input_str} onChange={this.handleChange}/> */}
             {/* <Table tableName = {this.state._data} /> */}
           </div>

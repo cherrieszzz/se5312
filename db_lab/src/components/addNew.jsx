@@ -12,7 +12,8 @@ class addNew extends React.Component {
     }
 
     handleAddClick = () => {
-        this.props.getFormData(this.state.addNewData)
+        this.props.parent.getFormData(this.state.addNewData)
+        console.log(this.state.addNewData)
     }
 
     handleChange = (e) => {
@@ -21,14 +22,13 @@ class addNew extends React.Component {
          this.setState({
             addNewData:index
          })
-         console.log(this.state.addNewData)
     } 
 
     render() {
         return (
             <>
                 <h2>添加新数据</h2>
-                <form onSubmit={this.handleSubmit}>
+                <form >
                     <div className="mb-3">
                         <label htmlFor="formGroupExampleInput" className="form-label">序号</label>
                         <input 
