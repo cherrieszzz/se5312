@@ -11,13 +11,20 @@ import Addnew from './components/addNew';
 class App extends React.Component {
   state = {
     _data: data,
-    data_sec : data2
+    data_sec : data2,
+    input_str:''
   }
   handClick = () => {
     this.setState({
       _data: data
     })
     console.log(this.state._data)
+  }
+  handleChange =(e) => {
+    console.log(e.currentTarget.value)
+    this.setState({
+      input_str:e.currentTarget.value
+    })
   }
   render() {
     return (
@@ -36,7 +43,7 @@ class App extends React.Component {
               />
               <Route path='/post' component={Posts} />
               <Route path='/addNew' component={Addnew} />
-
+            {/* <input value={this.state.input_str} onChange={this.handleChange}/> */}
             {/* <Table tableName = {this.state._data} /> */}
           </div>
         </div>

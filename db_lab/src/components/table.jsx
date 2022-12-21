@@ -5,7 +5,8 @@ import Addnew from './common/addNewBtn';
 class table extends React.Component {
     state = {
         table: this.props.tableName,
-        delid: ''
+        delid: '',
+      
     }
 
     handleClick = (value) => {
