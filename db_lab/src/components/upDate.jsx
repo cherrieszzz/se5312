@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-class addNew extends React.Component {
+class upDate extends React.Component {
     state = {
         addNewData: {
+            _id:this.props.match.params._id,
             name: '',
             img_url: '',
             info: '',
@@ -11,23 +12,31 @@ class addNew extends React.Component {
     }
 
     handleAddClick = () => {
-        axios.post('http://localhost:8081/admin/stone/addstone',this.state.addNewData)
-        this.props.history.push('/')  
+        console.log(this.state.addNewData)
+        axios.post('http://localhost:8081/admin/stone/update',this.state.addNewData)
+        this.props.history.push('/table1')  
     }
 
     handleChange = (e) => {
          const index = {...this.state.addNewData}
          index[e.currentTarget.name] = e.currentTarget.value
          this.setState({
-            addNewData:index
+            addNewData:{
+                _id:this.props.match.params._id,
+                name:index.name,
+                img_url:index.img_url,
+                info:index.info,
+                link:index.link
+            }
          })
          console.log(this.state.addNewData)
     } 
 
     render() {
+        console.log(this.props.match.params._id)
         return (
             <>
-                <h2>添加新数据</h2>
+                <h2>更新数据</h2>
                 <form >
                     <div className="mb-3">
                         <label htmlFor="formGroupExampleInput2" className="form-label">名字</label>
@@ -81,4 +90,4 @@ class addNew extends React.Component {
     }
 }
 
-export default addNew;
+export default upDate;

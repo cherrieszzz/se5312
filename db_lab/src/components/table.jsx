@@ -2,28 +2,34 @@ import React from 'react';
 import data from '../resource/data';
 import data2 from '../resource/data2';
 import Addnew from './common/addNewBtn';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 class table extends React.Component {
     state = {
-        table: this.props.tableName,
+        table: [],
         delid: '',
-      
     }
 
-    handleClick = (value) => {
-        var newTable = this.state.table.filter((del) => {
-            return del != value
-        })
+    async componentDidMount() {
+        const detail = await axios.get('http://localhost:8081/api/stones')
         this.setState({
-            table: newTable
+            table:detail.data['stones']
         })
+    }
+
+    handleClickDelete = (value) => {
+        console.log("del fun running")
+        axios.post('http://localhost:8081/admin/stone/delete',value)
     }
 
     render() {
-        console.log(this.state.table)
+        if(this.state.table.length == 0) {
+            return '正在从数据库中获取数据....'
+        }
         return (
             <>
                 <Addnew />
-                <p>共{this.state.table.length}条结果</p> 
+                <p>共{this.state.table.length}条结果</p>
                 <table className="table">
                     {/* <thead>
                         <tr>
@@ -45,7 +51,8 @@ class table extends React.Component {
                                             )
                                         })
                                     }
-                                    <td><a className='btn btn-outline-danger btn-sm' onClick={() => { this.handleClick(value) }}>删除</a></td>
+                                    <td><button className='btn btn-outline-primary btn-sm'><Link to={`/table1/${value._id}`}>更新</Link></button></td>
+                                    <td><a className='btn btn-outline-danger btn-sm' onClick={() => { this.handleClickDelete(value) }}>删除</a></td>
                                 </tr>
                             )
                         })}
