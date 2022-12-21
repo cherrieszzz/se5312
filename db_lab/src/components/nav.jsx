@@ -22,9 +22,10 @@ class nav extends Component {
         return (
             <div className="list-group">
                 <Link to='/table1' className={this.state.classes} aria-current="true" >
-                    The current link itemasd
+                    Table1
                 </Link>
-                <Link to="/post" className={this.state.classes} >A second link item</Link>
+                <Link to='/table2' className={this.state.classes}>Table2</Link>
+                <Link to="/post" className={this.state.classes} >Some Fake Posts</Link>
             </div>
         );
     }

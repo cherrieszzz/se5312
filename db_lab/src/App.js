@@ -5,12 +5,13 @@ import Nav from './components/nav'
 import Table from './components/table'
 import data from './resource/data';
 import data2 from './resource/data2';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import Posts from './components/posts';
 import Addnew from './components/addNew';
 class App extends React.Component {
   state = {
-    _data: data
+    _data: data,
+    data_sec : data2
   }
   handClick = () => {
     this.setState({
@@ -27,13 +28,15 @@ class App extends React.Component {
           </div>
 
           <div className='col-sm-9'>
-            <Routes>
               <Route path='/table1' 
-                     render={(props) => {return <Table  tableName = {this.state._data} {...props}/>}} 
+                     render={() =>  <Table  tableName = {this.state._data} />} 
               />
-              <Route path='/post' element={<Posts />} />
-              <Route path='/addNew' element ={<Addnew />} />
-            </Routes>
+              <Route path='/table2' 
+                     render={() =>  <Table  tableName = {this.state.data_sec} />} 
+              />
+              <Route path='/post' component={Posts} />
+              <Route path='/addNew' component={Addnew} />
+
             {/* <Table tableName = {this.state._data} /> */}
           </div>
         </div>
