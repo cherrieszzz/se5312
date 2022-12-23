@@ -4,10 +4,12 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const port = 8082
 const stu = require('./routes/students')
-const URI = 'mongodb+srv://zpyqaq:zpy020923@cluster0.6d1um.mongodb.net/db_lab?retryWrites=true&w=majority';
 const Students = require('./models/students')
+const config = require('./config.json')
 
-mongoose.connect(URI, {
+app.use(express.json())
+
+mongoose.connect(config.db_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }, err => {
@@ -27,7 +29,13 @@ router.get('/',(req, res) => {
     })
 })
 
-app.use('/',router)
+app.get('/api',(req ,res) => {
+    res.send("APi running")
+})
+
+app.post('/add',(req, res) => { 
+    res.send(req.body.name)
+})
 
 app.listen(port,() => {
     console.log("api running on port",port)
