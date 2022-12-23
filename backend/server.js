@@ -29,7 +29,6 @@ router.get('/',(req, res) => {
 
 app.use('/',router)
 
-
 app.listen(port,() => {
     console.log("api running on port",port)
 })
