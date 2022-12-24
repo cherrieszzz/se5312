@@ -1,13 +1,12 @@
 const express  = require('express')
 const app = express()
-const router = express.Router()
 const mongoose = require('mongoose')
 const port = 8082
-const stu = require('./routes/students')
-const Students = require('./models/students')
+const students = require('./routes/students')
 const config = require('./config.json')
 
 app.use(express.json())
+app.use('/students',students)
 
 mongoose.connect(config.db_url, {
     useNewUrlParser: true,
@@ -17,24 +16,8 @@ mongoose.connect(config.db_url, {
     console.log('Connected to MongoDB!!!')
 })
 
-router.get('/',(req, res) => {
-    console.log("router are running")
-    Students.find({},'project_num stu_name',(error , students) => {
-        if(error) {
-            console.log(error)
-        }
-        res.send({
-            students
-        })
-    })
-})
-
 app.get('/api',(req ,res) => {
     res.send("APi running")
-})
-
-app.post('/add',(req, res) => { 
-    res.send(req.body.name)
 })
 
 app.listen(port,() => {
