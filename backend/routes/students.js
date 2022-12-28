@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 router.get('/',(req, res) => {
     console.log("router are running")
-    Students.find({},'project_num stu_name',(error , students) => {
+    Students.find({},(error , students) => {
         if(error) {
             console.log(error)
         }
@@ -13,6 +13,15 @@ router.get('/',(req, res) => {
             students
         })
     })
+})
+
+router.post('/',async (req ,res) => {
+    const newStu = new Students({
+        project_name:req.body.project_name,
+        stu_name:req.body.stu_name
+    })
+    const result = await newStu.save()
+    res.send(result)
 })
 
 module.exports = router

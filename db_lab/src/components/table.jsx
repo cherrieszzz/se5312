@@ -4,6 +4,8 @@ import data2 from '../resource/data2';
 import Addnew from './common/addNewBtn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Nav from './nav'
+
 class table extends React.Component {
     state = {
         table: [],
@@ -11,19 +13,23 @@ class table extends React.Component {
     }
 
     async componentDidMount() {
-        const detail = await axios.get('http://localhost:8081/api/stones')
+        const {data : detail} = await axios.get('http://localhost:8082/students')
+        console.log(detail)
         this.setState({
-            table:detail.data['stones']
+            table:detail['students']
         })
+      
+
+        console.log(this.state.table)
     }
 
     handleClickDelete = (value) => {
         console.log("del fun running")
-        axios.post('http://localhost:8081/admin/stone/delete',value)
+        // axios.post('http://localhost:8081/admin/stone/delete',value)
     }
 
     render() {
-        if(this.state.table.length == 0) {
+        if (this.state.table.length == 0) {
             return '正在从数据库中获取数据....'
         }
         return (

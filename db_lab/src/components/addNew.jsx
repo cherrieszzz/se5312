@@ -26,11 +26,11 @@ class addNew extends React.Component {
 
     render() {
         return (
-            <>
-                <h2>添加新数据</h2>
+            <div className='container'>
+                <h2>登陆</h2>
                 <form >
                     <div className="mb-3">
-                        <label htmlFor="formGroupExampleInput2" className="form-label">名字</label>
+                        <label htmlFor="formGroupExampleInput2" className="form-label">用户名</label>
                         <input 
                             type="text" 
                             className="form-control" 
@@ -41,7 +41,7 @@ class addNew extends React.Component {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="formGroupExampleInput2" className="form-label">图片地址</label>
+                        <label htmlFor="formGroupExampleInput2" className="form-label">密码</label>
                         <input 
                             type="text" 
                             className="form-control" 
@@ -51,8 +51,8 @@ class addNew extends React.Component {
                             onChange={this.handleChange}
                         />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="formGroupExampleInput2" className="form-label">info</label>
+                    {/* <div className="mb-3">
+                        <label htmlFor="formGroupExampleInput2" className="form-label">赛事编号</label>
                         <input 
                             type="text" 
                             className="form-control" 
@@ -63,7 +63,7 @@ class addNew extends React.Component {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="formGroupExampleInput2" className="form-label">link</label>
+                        <label htmlFor="formGroupExampleInput2" className="form-label">赛事等级</label>
                         <input 
                             type="text" 
                             className="form-control" 
@@ -72,11 +72,10 @@ class addNew extends React.Component {
                             value={this.state.addNewData.link}
                             onChange={this.handleChange}
                         />
-                    </div>
-                    <button className='btn btn-primary' onClick={this.handleAddClick}>添加</button>
+        </div>*/}
+                    <button className='btn btn-primary' onClick={this.handleAddClick}>登陆</button> 
                 </form>
-            </>
-
+            </div>
         );
     }
 }
