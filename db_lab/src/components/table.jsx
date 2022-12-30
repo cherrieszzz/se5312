@@ -16,10 +16,8 @@ class table extends React.Component {
         const {data : detail} = await axios.get('http://localhost:8082/students')
         console.log(detail)
         this.setState({
-            table:detail['students']
+            table:detail
         })
-      
-
         console.log(this.state.table)
     }
 
@@ -50,13 +48,8 @@ class table extends React.Component {
                         {this.state.table.map(value => {
                             return (
                                 <tr >
-                                    {
-                                        Object.keys(value).map(index => {
-                                            return (
-                                                <td>{value[index]}</td>
-                                            )
-                                        })
-                                    }
+                                    <td>{value.project_num}</td>
+                                    <td>{value.stu_name}</td>
                                     <td><button className='btn btn-outline-primary btn-sm'><Link to={`/table1/${value._id}`}>更新</Link></button></td>
                                     <td><a className='btn btn-outline-danger btn-sm' onClick={() => { this.handleClickDelete(value) }}>删除</a></td>
                                 </tr>

@@ -10,7 +10,7 @@ class information extends Component {
                 <div className="col-sm-2">
                     <Nav />
                 </div>
-                <div className="col-sm-10">
+                <div className="col-sm-5">
                     <Table />
                 </div>
 
