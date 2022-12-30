@@ -4,9 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose')
 const port = 8082
-const students = require('./routes/students')
 const config = require('./config.json')
-const teacher = require('./routes/teacher')
 const auth = require('./routes/auth')
 const stuGet = require('./routes/stuGet')
 const teacherGet = require('./routes/teacherGet')
@@ -14,8 +12,6 @@ const teacherGet = require('./routes/teacherGet')
 app.use(express.json())
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/students',students)
-app.use('/teacher',teacher)
 app.use('/auth',auth)
 app.use('/stuget',stuGet)
 app.use('/teacherget',teacherGet)
