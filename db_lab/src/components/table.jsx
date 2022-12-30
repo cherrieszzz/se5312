@@ -1,10 +1,7 @@
 import React from 'react';
-import data from '../resource/data';
-import data2 from '../resource/data2';
-import Addnew from './common/addNewBtn';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Nav from './nav'
+
 
 class table extends React.Component {
     state = {
@@ -13,7 +10,7 @@ class table extends React.Component {
     }
 
     async componentDidMount() {
-        const {data : detail} = await axios.get('http://localhost:8082/students')
+        const {data : detail} = await axios.get('http://jsonplaceholder.typicode.com/posts/1/comments')
         console.log(detail)
         this.setState({
             table:detail
@@ -31,25 +28,25 @@ class table extends React.Component {
             return '正在从数据库中获取数据....'
         }
         return (
-            <>
-                <Addnew />
-                <p>共{this.state.table.length}条结果</p>
+            <div className='container'>
                 <table className="table">
-                    {/* <thead>
+                   <thead>
                         <tr>
                             <th scope="col">序号</th>
-                            <th scope="col">获奖类别</th>
-                            <th scope="col">作品名称</th>
-                            <th scope="col">类别</th>
+                            <th scope="col">编号</th>
+                            <th scope="col">名字</th>
+                            <th scope="col">邮箱</th>
                             <th scope="col">所在学院</th>
                         </tr>
-                    </thead> */}
+                    </thead> 
                     <tbody>
                         {this.state.table.map(value => {
                             return (
                                 <tr >
-                                    <td>{value.project_num}</td>
-                                    <td>{value.stu_name}</td>
+                                    <td>{value.postId}</td>
+                                    <td>{value.id}</td>
+                                    <td>{value.name}</td>
+                                    <td>{value.email}</td>
                                     <td><button className='btn btn-outline-primary btn-sm'><Link to={`/table1/${value._id}`}>更新</Link></button></td>
                                     <td><a className='btn btn-outline-danger btn-sm' onClick={() => { this.handleClickDelete(value) }}>删除</a></td>
                                 </tr>
@@ -57,7 +54,7 @@ class table extends React.Component {
                         })}
                     </tbody>
                 </table>
-            </>
+            </div>
 
         );
     }

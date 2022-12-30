@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const direct = require('../models/direct')
 const award = require('../models/award')
-const { findById } = require('../models/students')
+const isTeacher = require('../middlewares/isTeacher')
 
-router.get('/:name',(req ,res) => {
-    direct.find({direct_tea:req.params.name},(err, docs) => {
+router.get('/',isTeacher, (req ,res) => {
+    direct.find({direct_tea:req.user.name},(err, docs) => {
         const findAwait = []
         docs.map(value => {
             findAwait.push(value.project_num)
