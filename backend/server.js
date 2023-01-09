@@ -24,7 +24,7 @@ mongoose.connect(config.db_url, {
     console.log('Connected to MongoDB!!!')
 })
 
-app.get('/api',(req ,res) => {
+app.get('/',(req ,res) => {
     res.send("APi running")
 })
 
