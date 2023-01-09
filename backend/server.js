@@ -8,6 +8,7 @@ const config = require('./config.json')
 const auth = require('./routes/auth')
 const stuGet = require('./routes/stuGet')
 const teacherGet = require('./routes/teacherGet')
+const admin = require('./routes/admin')
 
 app.use(express.json())
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth',auth)
 app.use('/stuget',stuGet)
 app.use('/teacherget',teacherGet)
+app.use('/admin',admin)
 
 mongoose.connect(config.db_url, {
     useNewUrlParser: true,

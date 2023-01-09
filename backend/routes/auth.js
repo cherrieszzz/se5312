@@ -29,6 +29,7 @@ router.post('/', async (req, res) => {
     }
     if(req.body.auth == "admin") {
         const result = await admin.find({admin_name : req.body.name, password:req.body.password})
+        console.log(req.body.name,result,req.body.password)
         if(result.length == 0) {
             res.status(400).send("不存在")
             return
